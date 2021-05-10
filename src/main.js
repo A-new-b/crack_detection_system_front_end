@@ -3,6 +3,9 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
+// 权限管理
+import "./permission";
+
 import VueVideoPlayer from "vue-video-player";
 // require videojs style
 import "video.js/dist/video-js.css";

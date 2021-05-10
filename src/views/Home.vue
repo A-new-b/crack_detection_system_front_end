@@ -10,9 +10,7 @@
         <v-card-title>异常图像</v-card-title>
         <v-card-text>
           <!--          <img src="../assets/logo.png" />-->
-          <v-img
-            src="http://0.0.0.0:8000/file?file=%E5%B1%95%E7%A4%BA.jpg"
-          ></v-img>
+          <v-img src="/api/file?file=%E5%B1%95%E7%A4%BA.jpg"></v-img>
           <v-simple-table>
             <template v-slot:default>
               <thead>
@@ -39,25 +37,159 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <div style="display: flex; flex-direction: column; align-items: center">
-      <div style="width: 55%">
-        <video-player
-          class="video-player-box"
-          ref="videoPlayer"
-          :playsinline="true"
-          :options="playerOptions"
-          @play="onPlayerPlay($event)"
-          @ready="playerReadied"
-          @timeupdate="onPlayerTimeupdate($event)"
-          @pause="onPlayerPause($event)"
-        ></video-player>
-      </div>
+    <div style="margin: 1%">
+      <v-row
+        style="display: flex; flex-direction: row; justify-content: center"
+      >
+        <v-col md="6" cols="12" sm="9" class="flex flex-column d-flex">
+          <div>
+            <video-player
+              class="video-player-box"
+              ref="videoPlayer"
+              :playsinline="true"
+              :options="playerOptions"
+              @play="onPlayerPlay($event)"
+              @ready="playerReadied"
+              @timeupdate="onPlayerTimeupdate($event)"
+              @pause="onPlayerPause($event)"
+            ></video-player>
+          </div>
+
+        </v-col>
+      </v-row>
+    </div>
+    <div style="margin: 1%">
+      <v-row no-gutters>
+        <v-col class="flex flex-column d-flex">
+          <v-card class="pa-2 flex flex-column d-flex" outlined tile>
+            <div style="font-weight: bold">相关信息</div>
+          </v-card>
+        </v-col>
+      </v-row>
+
+      <v-row no-gutters>
+        <v-col md="2" cols="4" class="flex flex-column d-flex">
+          <v-row no-gutters>
+            <v-col class="flex flex-column d-flex">
+              <v-card class="pa-2 flex flex-column d-flex" outlined tile>
+                <div style="font-weight: bold">铸坯编号</div>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
+        <v-col md="4" cols="8" class="flex flex-column d-flex">
+          <v-row no-gutters>
+            <v-col class="flex flex-column d-flex">
+              <v-card class="pa-2 flex flex-column d-flex" outlined tile>
+                123456
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
+        <v-col md="2" cols="4" class="flex flex-column d-flex">
+          <v-row no-gutters>
+            <v-col class="flex flex-column d-flex">
+              <v-card class="pa-2 flex flex-column d-flex" outlined tile>
+                <div style="font-weight: bold">铸坯宽度</div>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
+        <v-col md="4" cols="8" class="flex flex-column d-flex">
+          <v-row no-gutters>
+            <v-col class="flex flex-column d-flex">
+              <v-card class="pa-2 flex flex-column d-flex" outlined tile>
+                2.1m
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+
+      <v-row no-gutters>
+        <v-col md="2" cols="4" class="flex flex-column d-flex">
+          <v-row no-gutters>
+            <v-col class="flex flex-column d-flex">
+              <v-card class="pa-2 flex flex-column d-flex" outlined tile>
+                <div style="font-weight: bold">拉速</div>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
+        <v-col md="4" cols="8" class="flex flex-column d-flex">
+          <v-row no-gutters>
+            <v-col class="flex flex-column d-flex">
+              <v-card class="pa-2 flex flex-column d-flex" outlined tile>
+                0.8m/min
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
+        <v-col md="2" cols="4" class="flex flex-column d-flex">
+          <v-row no-gutters>
+            <v-col class="flex flex-column d-flex">
+              <v-card class="pa-2 flex flex-column d-flex" outlined tile>
+                <div style="font-weight: bold">相机运行状态</div>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
+        <v-col md="4" cols="8" class="flex flex-column d-flex">
+          <v-row no-gutters>
+            <v-col class="flex flex-column d-flex">
+              <v-card class="pa-2 flex flex-column d-flex" outlined tile>
+                良好
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+
+      <v-row no-gutters>
+        <v-col md="2" cols="4" class="flex flex-column d-flex">
+          <v-row no-gutters>
+            <v-col class="flex flex-column d-flex">
+              <v-card class="pa-2 flex flex-column d-flex" outlined tile>
+                <div style="font-weight: bold">检测人</div>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
+        <v-col md="4" cols="8" class="flex flex-column d-flex">
+          <v-row no-gutters>
+            <v-col class="flex flex-column d-flex">
+              <v-card class="pa-2 flex flex-column d-flex" outlined tile>
+                {{ permission }}
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
+        <v-col md="2" cols="4" class="flex flex-column d-flex">
+          <v-row no-gutters>
+            <v-col class="flex flex-column d-flex">
+              <v-card class="pa-2 flex flex-column d-flex" outlined tile>
+                <div style="font-weight: bold">检测时间</div>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
+        <v-col md="4" cols="8" class="flex flex-column d-flex">
+          <v-row no-gutters>
+            <v-col class="flex flex-column d-flex">
+              <v-card class="pa-2 flex flex-column d-flex" outlined tile>
+                {{ getTime() }}
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
     </div>
   </div>
 </template>
 
 <script>
 import { notify } from "../components/notification";
+import { getCurrentTime } from "../utils/index";
 export default {
   name: "Home",
   data() {
@@ -74,10 +206,10 @@ export default {
         sources: [
           {
             type: "video/mp4",
-            src: "http://0.0.0.0:8000/file?file=展示.mp4", //url地址
+            src: "/api/file?file=展示.mp4", //url地址
           },
         ],
-        poster: "http://0.0.0.0:8000/file?file=展示.jpg", //你的封面地址
+        poster: "/api/file?file=展示.jpg", //你的封面地址
         // width: document.documentElement.clientWidth,
         notSupportedMessage: "此视频暂无法播放，请稍后再试", //允许覆盖Video.js无法播放媒体源时显示的默认信息。
         controlBar: {
@@ -95,9 +227,13 @@ export default {
       ],
       errorBtn: true,
       dialogTrigger: false,
+      //权限
+      permission: "",
     };
   },
-
+  mounted() {
+    this.permission = localStorage.getItem("Access-Token");
+  },
   components: {},
   methods: {
     onPlayerTimeupdate(player) {
@@ -122,6 +258,12 @@ export default {
     onPlayerPlay() {},
     switchDialogTrigger() {
       this.dialogTrigger = !this.dialogTrigger;
+    },
+
+    //当前时间
+
+    getTime() {
+      return getCurrentTime();
     },
   },
 };

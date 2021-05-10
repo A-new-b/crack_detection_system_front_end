@@ -11,7 +11,7 @@
       dark
     >
       <p></p>
-      <v-list-item> 裂痕测系统 </v-list-item>
+      <v-list-item> 连铸坯表面裂痕监测系统 </v-list-item>
       <p></p>
       <v-list dense>
         <template v-for="router in routermaps[0].children">
@@ -19,7 +19,6 @@
             :key="router.name"
             @click="jumpto(router)"
             v-if="
-              router.meta.permission.indexOf(permission) !== -1 &&
               router.meta.group === false
             "
           >
@@ -33,10 +32,7 @@
           <v-list-group
             :key="router.name"
             :prepend-icon="router.meta.icon"
-            v-if="
-              router.meta.permission.indexOf(permission) !== -1 &&
-              router.meta.group === true
-            "
+            v-if="router.meta.group === true"
             no-action
           >
             <template v-slot:activator>
@@ -117,8 +113,6 @@
 import { asyncRouterMap } from "../router/routerConfig";
 import notification from "../components/notification.vue";
 
-import crypto from "crypto";
-
 export default {
   name: "BasicLayout",
   components: {
@@ -192,22 +186,7 @@ export default {
         this.$router.push(path);
       }
     },
-    changePass() {
-      const SignId = localStorage.getItem("SignId");
-      const type = localStorage.getItem("permission");
-      const id = {
-        SignId,
-        type,
-      };
-      const md5 = crypto.createHash("md5");
-      md5.update(this.oldPassword);
-      const oldPassword = md5.digest("hex");
-      const md52 = crypto.createHash("md5"); // 第二个md5加密
-      md52.update(this.newPassword);
-      const newPassword = md52.digest("hex");
-      id.oldpass = oldPassword;
-      id.newpass = newPassword;
-    },
+
     loginout() {
       localStorage.clear();
       sessionStorage.clear();
